@@ -1,0 +1,16 @@
+<div class="container">
+ 
+  <div>
+    <button (click)="create()" class=" btn-large waves-effect waves-light grey"><i class="fas fa-plus"></i> Create Contact</button>
+  </div>
+  <div>
+    <table class="responsive-table highlight">
+      <thead>
+          <tr *ngFor="let con of ContactService.contact">
+              
+            <th class="conInfo black"><i class="fas fa-user fas1"></i> <span class="namespan">{{con.Name}}</span> <i (click)="edit(con)" class="fas fas1 fa-file-signature"></i></th>
+          </tr>
+      </thead>  
+    </table>
+  </div>
+  </div>

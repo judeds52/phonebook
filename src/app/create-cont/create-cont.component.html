@@ -1,0 +1,56 @@
+<div *ngIf="visible">
+  <div class="container box">
+<form #form="ngForm" [formGroup]="conForm" (ngSubmit)="onSubmit(form)">
+  <p>
+      <input  ngModel formControlName="_id"  [(ngModel)]="ContactService.useContact._id" hidden >
+     
+  </p>
+  <p>
+  <mat-form-field>
+    <mat-label>Name of Contact</mat-label>
+    <input matInput formControlName="Name" ngModel [(ngModel)]="ContactService.useContact.Name"  required>
+    </mat-form-field>
+    <mat-error *ngIf="contactName.touched && contactName.invalid">
+       <span> error</span>
+    </mat-error>
+  </p>
+  <p>
+    <mat-form-field>
+      <mat-label>Phone No.</mat-label>
+      <input matInput formControlName="PhoneNum"  ngModel [(ngModel)]="ContactService.useContact.PhoneNum"  required>
+      </mat-form-field>
+      <mat-error *ngIf="Phone.touched && Phone.invalid">
+        <span>Please enter only numbers</span>
+      </mat-error>
+  </p>
+  <p>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" ngModel  [(ngModel)]="ContactService.useContact.email"  required>
+      </mat-form-field>
+      <mat-error *ngIf="email.touched && email.invalid">
+        <span></span>
+      </mat-error>
+  </p>
+  <button  class="btn btn-outline-primary" value="submit" >Submit</button>&nbsp;<button (click)="Cancel()" class="btn btn-outline-primary" value="reset">Cancel</button>
+</form>
+  </div>
+</div>
+<div *ngIf="!visible">
+  <div class="container">
+ 
+    <div>
+      <button (click)="create()" class=" btn-large waves-effect waves-light grey"><i class="fas fa-plus"></i> Create Contact</button>
+    </div>
+    <div>
+      <table class="responsive-table highlight">
+        <thead>
+            <tr *ngFor="let con of ContactService.contact">
+                
+              <th class="conInfo white"><i class="fas fa-user fas1"></i> <span class="namespan">{{con.Name}}<i (click)="delete(con._id)" class="fas fas1 fa-trash-alt"></i></span> <i (click)="edit(con)" class="fas fas1 fa-file-signature"></i></th>
+            </tr>
+        </thead>  
+      </table>
+    </div>
+    </div>
+</div>
